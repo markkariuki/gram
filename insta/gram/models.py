@@ -4,10 +4,6 @@ from tinymce.models import HTMLField
 
 # Create your models here.
 
-class User(models.Model):
-    username = models.CharField(max_length=20)
-    email = models.CharField(max_length=20)
-    password = models.CharField(max_length=20)
 
 
 class Post(models.Model):
@@ -17,7 +13,8 @@ class Post(models.Model):
     likes = models.IntegerField(null =True)
     date_uploaded = models.DateTimeField(auto_now_add=True, null=True)
     user = models.ForeignKey(User)
-    comments = models.TextField(null=True)
+    pub_date = models.DateTimeField(auto_now_add=True)
+
 
 
 class Comments(models.Model):
