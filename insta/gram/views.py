@@ -1,14 +1,18 @@
 from django.http  import HttpResponse,Http404
+from .forms import NewPostForm
+from django.contrib.auth.decorators import login_required
 import datetime as dt
 from django.shortcuts import render
+from . models import Post
 
-# Create your views here.
+@login_required(login_url='/accounts/login/')
 def welcome(request):
     return render(request, 'base.html')
 
 def photos_of_day(request):
     date = dt.date.today()
-    return render(request, 'base.html', {"date": date,})
+    posts = Post.objects.all()
+    return render(request, 'home.html', {"date": date,"posts":posts})
 
 
 def past_days_photos(request,past_date):
@@ -32,3 +36,17 @@ def past_days_photos(request,past_date):
         </html>
             '''
     return HttpResponse(html)
+
+@login_required(login_url='/accounts/login/')
+def new_post(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = NewPostForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.user = current_user
+            post.save()
+
+    else:
+        form = NewPostForm()
+    return render(request, 'new_post.html', {"form": form})

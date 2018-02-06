@@ -8,12 +8,12 @@ from tinymce.models import HTMLField
 
 class Post(models.Model):
     image = models.ImageField(upload_to = 'photos/', null = True)
-    image_name = models.CharField(max_length=30, null=True)
-    image_caption = models.TextField(null =True)
+    name = models.CharField(max_length=60, null=True)
+    caption = HTMLField(null=True)
     likes = models.IntegerField(null =True)
     date_uploaded = models.DateTimeField(auto_now_add=True, null=True)
     user = models.ForeignKey(User)
-    pub_date = models.DateTimeField(auto_now_add=True)
+    pub_date = models.DateTimeField(auto_now_add=True, null=True)
 
 
 

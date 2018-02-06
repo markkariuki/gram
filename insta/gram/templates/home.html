@@ -1,5 +1,17 @@
 {%extends 'base.html'%}
 
-{% block content %}
-{{bock.super}}
-{% endblock %}
+ {% block content %}
+
+ <div class="container">
+    {% for post in posts%}
+   <img src="{{post.image.url}}">
+   {{post.name}}
+   {% endfor%}
+
+   <div class="row">
+     <p>Posted {{post.pub_date|timesince}}</p>
+   </div>
+
+ </div>
+
+ {% endblock %}
