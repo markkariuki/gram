@@ -9,12 +9,27 @@ from . models import Post
 def welcome(request):
     return render(request, 'base.html')
 
+@login_required(login_url='/accounts/login/')
 def photos_of_day(request):
     date = dt.date.today()
     posts = Post.objects.all()
-    return render(request, 'home.html', {"date": date,"posts":posts})
+    form = NewPostForm
+    if request.method =='POST':
+        if form.is_valid:
+            posts = form.save(commit=False)
+            post.user= requet.user.id
+            post.save()
+        else:
+            form = NewPostForm
+    return render(request, 'home.html', {"date": date,"posts":posts, "form":form})
 
-
+    # image = models.ImageField(upload_to = 'photos/', null = True)
+    # name = models.CharField(max_length=60, null=True)
+    # caption = HTMLField(null=True)
+    # likes = models.IntegerField(null =True)
+    # date_uploaded = models.DateTimeField(auto_now_add=True, null=True)
+    # user = models.ForeignKey(User)
+    # pub_date
 def past_days_photos(request,past_date):
 
     try:

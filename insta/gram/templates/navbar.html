@@ -1,3 +1,6 @@
+  {% load bootstrap3 %}
+ {% load staticfiles %}
+
 <div class="navbar navbar-inverse" role="navigation" style="background-color:white">
     <div class="container-fluid">
         <div class="col-md-4">
@@ -25,16 +28,44 @@
           </div>
             </div>
         </form>
+{% if user.is_authenticated %}
+<button type="button" class="btn btn-danger btn-lg" data-toggle="modal" style="margin-top:20px;"a-target="#myModal">post</button>
+
+<div class="modal fade" id="myModal" role="dialog">
+<div class="modal-dialog">
+
+  <!-- Modal content-->
 
 
-<div class="navbar-right">
+   <div class="modal-content">
+   <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <h4 class="modal-title">Modal Header</h4>
+   </div>
+   <div class="modal-body">
+      <form  action="{%url 'new-post'%}" method="post" enctype="multipart/form-data">
+        {%csrf_token%}
+
+        {% bootstrap_form form%}
+        <input type="submit" class="btn btn-success btn-lg" value="Post">
+      </form>
+
+   </div>
+   <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+   </div>
+   </div>
+
+   </div>
+   </div>
+
+
+   <div class="navbar-right">
     <div class="col-sm-6 col-md-6">
-       {% if user.is_authenticated %}
-      <a <button type="button" name="button"  href="{%url 'new-post'%}">Create Article</a>
-</button>
+
        <ul>
          <li class="dropdown">
-           <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button" aria-expanded="false">Account
+           <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button"  aria-expanded="false">Account
                      <span class="caret"></span>
                  </a>
            <ul class="dropdown-menu" role="menu">
@@ -57,8 +88,13 @@
 
        {% endif %}
      </div>
-
+</div>
     </div>
+
 </div>
-</div>
-</div>
+
+
+  {{form.media}}
+{% block scripts %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+{% bootstrap_javascript %} {% endblock %}
