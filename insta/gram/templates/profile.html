@@ -1,0 +1,218 @@
+{% extends 'base.html'%}{% block content %}\
+<style>
+.ig_cont {
+	margin: 0 auto;
+	width: 400px;
+	height: 542px;
+	background: #f8f8f8;
+	border-radius: 10px;
+	border: 1px solid #E5E5E5;
+	overflow: hidden;
+	position: relative;
+	font: 16px Noto Sans;
+}
+
+.ig_head {
+	position: absolute;
+	width: 100%;
+	height: 40px;
+	background: #fff;
+	border-bottom: 1px solid #e5e5e5;
+}
+
+.i1, .i2, .user {
+	position: absolute;
+	top: 8px;
+}
+
+.i1 {
+	left: 5px;
+}
+
+.i2 {
+	right: 5px;
+}
+
+.user {
+	left: 65px;
+}
+
+.ig_profile {
+	position: absolute;
+	top: 41px;
+	height: 175px;
+	width: 100%;
+	background: #FAFAFA;
+	border-top: 1px solid #e5e5e5;
+	border-bottom: 1px solid #e5e5e5;
+}
+
+.ig_abg {
+	width: 133px;
+	height: 133px;
+	background: linear-gradient(200deg, #d047d1, #ff0000, #ffff00);
+	position: relative;
+	border-radius: 50%;
+	margin: 15px;
+	padding: 4px;
+}
+
+.ig_av {
+	width: 125px;
+	height: 125px;
+	background-size: 125px 125px;
+	background-image: url({{profile.profile_photo.url}});
+	border-radius: 50%;
+	border: 4px solid #e5e5e5;
+}
+
+.ig_info {
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	width: 230px;
+	height: calc(100% - 10px);
+	font: bold 20px Noto Sans;
+	line-height: 90%;
+}
+
+.flex-container {
+	width: 100%;
+	margin-top: 4px;
+	text-align: center;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-flow: row nowrap;
+	flex-flow: row nowrap;
+	-webkit-justify-content: center;
+	justify-content: center;
+}
+
+.flex-item {
+	-webkit-flex: 1 0 auto;
+	flex: 1 0 auto;
+}
+
+.ig_lt {
+	color: #b1b1b1;
+	font-size: 16px;
+}
+
+.ig_desc {
+	font: 14px Noto Sans;
+	letter-spacing: 0.5px;
+	height: 110px;
+	margin: 10px 5px 5px 5px;
+	width: calc(100% - 10px);
+	overflow: hidden;
+}
+
+.ig_sub {
+	color: #b1b1b1;
+}
+
+.ig_di, .ig_lo {
+	font-size: 13px;
+}
+
+.ig_lo {
+	color: #3C6EB2;
+}
+
+.ig_posts {
+	width: 100%;
+	height: 320px;
+	position: absolute;
+	top: 218px;
+	border-top: 1px solid #e5e5e5;
+	text-align: center;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-flow: row wrap;
+	flex-flow: row wrap;
+	-webkit-justify-content: center;
+	justify-content: center;
+	overflow: hidden;
+}
+
+.ig_posts i {
+	font-size: 32px;
+	padding-top: 10px;
+}
+
+.ig_posts i:first-of-type {
+	color: #415d81;
+}
+
+.ig_posts img {
+	width: 125px;
+	height: 125px;
+}
+
+</style>
+
+<link href="//fonts.googleapis.com/icon?family=Material+Icons|Noto+Sans"
+      rel="stylesheet">
+
+<div class="ig_cont">
+	<div class="ig_head">
+    <i class="material-icons i1"></i>
+		<span class="user">
+
+{{profile.user}}
+		</span>
+		<i class="material-icons i2">more_vert</i>
+	</div>
+	<div class="ig_profile">
+
+		<div class="ig_abg">
+			<div class="ig_av">{{image.image.url}}</div>
+		</div>
+
+		<div class="ig_info">
+			<div class="flex-container">
+				<div class="flex-item">
+					4703
+					<br><span class="ig_lt">posts</span>
+				</div>
+
+				<div class="flex-item">
+					46.6k
+					<br><span class="ig_lt">followers</span>
+				</div>
+
+				<div class="flex-item">
+					1959
+					<br><span class="ig_lt">following</span>
+				</div>
+
+			</div>
+
+			<div class="ig_desc">
+				<b>Real Name</b>
+				<br><span class="ig_sub">Occupation</span>
+				<br><span class="ig_di">Adjective. Adjective. Description.</span>
+				<br><span class="ig_lo">City, State, Country</span>
+				<br><div class="ig_lo">{{profile.user_bio}}</span></div>
+
+			</div>
+		</div>
+	</div>
+
+	<div class="ig_posts">
+
+		<i class="material-icons flex-item">apps</i>
+		<i class="material-icons flex-item">list</i>
+		<i class="material-icons flex-item">perm_contact_calendar</i><p>
+
+		<img class="flex-item" src="http://68.media.tumblr.com/7b6f64f4849f2d9df2161ba6d75ec241/tumblr_osj96jub3z1wtha6yo1_400.jpg">
+		<img class="flex-item" src="http://68.media.tumblr.com/743f7c5bda8d04d1daaa418c0c3f09dd/tumblr_oeepv27hfe1uxolajo1_500.jpg">
+		<img class="flex-item" src="http://68.media.tumblr.com/49354d5c2d5f356b1918c169960990a0/tumblr_o4pycy6hra1uxolajo1_500.jpg">
+		<img class="flex-item" src="http://68.media.tumblr.com/fa436108baae7dc998a672a7a4cc2364/tumblr_o3uhrxu4dV1uxolajo1_1280.jpg">
+		<img class="flex-item" src="http://68.media.tumblr.com/4335afcbaff04b659d063be84ff7037f/tumblr_nocvbdZ6Ob1sulnzno1_500.jpg">
+		<img class="flex-item" src="http://68.media.tumblr.com/05da7aa03fc3bbdb2d31737dd1678742/tumblr_o85cx7v9Fu1uxolajo1_1280.png">
+
+	</div>
+
+</div>
+{% endblock %}

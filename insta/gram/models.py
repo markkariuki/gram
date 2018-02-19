@@ -4,6 +4,12 @@ from tinymce.models import HTMLField
 
 # Create your models here.
 
+class Editor(models.Model):
+    first_name = models.CharField(max_length =30)
+    last_name = models.CharField(max_length =30)
+    email = models.EmailField()
+    phone_number = models.CharField(max_length = 10,blank =True)
+
 
 
 class Post(models.Model):
@@ -25,3 +31,18 @@ class Comments(models.Model):
 
     def __str__(self):
         return self.name
+
+class Profile(models.Model):
+    profile_photo = models.ImageField(upload_to = 'profiles/', null=True)
+    user_bio = models.TextField()
+    user = models.ForeignKey(User)
+    last_update = models.DateTimeField(auto_now_add=True, null=True)
+
+    class Meta:
+        ordering =['-last_update']
+
+    def __str__(self):
+        return self.user.username
+
+    def save_profile(self):
+        self.sav

@@ -3,11 +3,11 @@ from .forms import NewPostForm
 from django.contrib.auth.decorators import login_required
 import datetime as dt
 from django.shortcuts import render
-from . models import Post
+from . models import Post, Profile, Editor
 
 @login_required(login_url='/accounts/login/')
 def welcome(request):
-    return render(request, 'base.html')
+    return render(request, 'home.html')
 
 @login_required(login_url='/accounts/login/')
 def photos_of_day(request):
@@ -65,3 +65,11 @@ def new_post(request):
     else:
         form = NewPostForm()
     return render(request, 'new_post.html', {"form": form})
+
+
+@login_required(login_url='/accounts/login/')
+def profile(request):
+    current_user = request.user
+    profile = Profile.objects.get(user_id=current_user.id)
+    images = Photos.objects.all().filter(id=current_user.id)
+    return render(request, 'profile.html', {'images':images, 'profile':profile})

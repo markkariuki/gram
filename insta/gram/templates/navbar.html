@@ -1,4 +1,4 @@
-  {% load bootstrap3 %}
+{% load bootstrap3 %}
  {% load staticfiles %}
 
 <div class="navbar navbar-inverse" role="navigation" style="background-color:white">
@@ -29,7 +29,7 @@
             </div>
         </form>
 {% if user.is_authenticated %}
-<button type="button" class="btn btn-danger btn-lg" data-toggle="modal" style="margin-top:20px;"a-target="#myModal">post</button>
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" style="margin-top:20px;"  "padding:8px;" datstyle="margin-top:20px;"a-target="#myModal">Open Modal</button>
 
 <div class="modal fade" id="myModal" role="dialog">
 <div class="modal-dialog">
