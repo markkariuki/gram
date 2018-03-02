@@ -14,7 +14,6 @@
 
   {% block styles %}
     {% bootstrap_css %}
-    <link rel="stylesheet" href="{% static 'css/basephotos.css' %}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   {% endblock %}
 
@@ -23,10 +22,13 @@
     {% include "navbar.html" %}
 
     {% block content %} <h1 class='text-center'>posts for : <br> {{date|date:"l d-F Y"}}</h1> {%endblock%}
-  
+
     {% block scripts %}
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-     {% bootstrap_javascript %}
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+      {% bootstrap_javascript %}
     {% endblock %}
 </body>
 </html>

@@ -10,17 +10,25 @@ def welcome(request):
     return render(request, 'home.html')
 
 @login_required(login_url='/accounts/login/')
+def profile(request):
+    current_editor = request.user
+    profile = Profile.objects.get(user_id=current_editor.id)
+    images = Post.objects.all().filter(id=current_editor.id)
+    return render(request, 'profile.html', {'images':images, 'profile':profile})
+
+
+@login_required(login_url='/accounts/login/')
 def photos_of_day(request):
     date = dt.date.today()
     posts = Post.objects.all()
-    form = NewPostForm
+    form = NewPostForm()
     if request.method =='POST':
-        if form.is_valid:
+        if form.is_valid():
             posts = form.save(commit=False)
             post.user= requet.user.id
             post.save()
         else:
-            form = NewPostForm
+            form = NewPostForm()
     return render(request, 'home.html', {"date": date,"posts":posts, "form":form})
 
     # image = models.ImageField(upload_to = 'photos/', null = True)
@@ -65,11 +73,3 @@ def new_post(request):
     else:
         form = NewPostForm()
     return render(request, 'new_post.html', {"form": form})
-
-
-@login_required(login_url='/accounts/login/')
-def profile(request):
-    current_user = request.user
-    profile = Profile.objects.get(user_id=current_user.id)
-    images = Photos.objects.all().filter(id=current_user.id)
-    return render(request, 'profile.html', {'images':images, 'profile':profile})

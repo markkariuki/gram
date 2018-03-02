@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from tinymce.models import HTMLField
+from django.contrib.auth.models import AbstractUser
+
 
 # Create your models here.
 
@@ -20,6 +22,7 @@ class Post(models.Model):
     date_uploaded = models.DateTimeField(auto_now_add=True, null=True)
     user = models.ForeignKey(User)
     pub_date = models.DateTimeField(auto_now_add=True, null=True)
+
 
 
 
@@ -45,4 +48,4 @@ class Profile(models.Model):
         return self.user.username
 
     def save_profile(self):
-        self.sav
+        self.save

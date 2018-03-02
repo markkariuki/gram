@@ -61,7 +61,6 @@
 	width: 125px;
 	height: 125px;
 	background-size: 125px 125px;
-	background-image: url({{profile.profile_photo.url}});
 	border-radius: 50%;
 	border: 4px solid #e5e5e5;
 }
@@ -156,7 +155,7 @@
 
 <div class="ig_cont">
 	<div class="ig_head">
-    <i class="material-icons i1"></i>
+    <i class="material-icons i1">arrow_back</i>
 		<span class="user">
 
 {{profile.user}}
@@ -166,7 +165,7 @@
 	<div class="ig_profile">
 
 		<div class="ig_abg">
-			<div class="ig_av">{{image.image.url}}</div>
+			<div class="ig_av">{{Profile.profile_photo}}</div>
 		</div>
 
 		<div class="ig_info">
@@ -205,14 +204,12 @@
 		<i class="material-icons flex-item">list</i>
 		<i class="material-icons flex-item">perm_contact_calendar</i><p>
 
-		<img class="flex-item" src="http://68.media.tumblr.com/7b6f64f4849f2d9df2161ba6d75ec241/tumblr_osj96jub3z1wtha6yo1_400.jpg">
-		<img class="flex-item" src="http://68.media.tumblr.com/743f7c5bda8d04d1daaa418c0c3f09dd/tumblr_oeepv27hfe1uxolajo1_500.jpg">
-		<img class="flex-item" src="http://68.media.tumblr.com/49354d5c2d5f356b1918c169960990a0/tumblr_o4pycy6hra1uxolajo1_500.jpg">
-		<img class="flex-item" src="http://68.media.tumblr.com/fa436108baae7dc998a672a7a4cc2364/tumblr_o3uhrxu4dV1uxolajo1_1280.jpg">
-		<img class="flex-item" src="http://68.media.tumblr.com/4335afcbaff04b659d063be84ff7037f/tumblr_nocvbdZ6Ob1sulnzno1_500.jpg">
-		<img class="flex-item" src="http://68.media.tumblr.com/05da7aa03fc3bbdb2d31737dd1678742/tumblr_o85cx7v9Fu1uxolajo1_1280.png">
-
+			{% for image in images %}
+	 <a href="{% url 'singleImage' image.id%}">
+			 <img src="{{image.image.url}}">
 	</div>
 
 </div>
+{% endfor%}
+
 {% endblock %}
