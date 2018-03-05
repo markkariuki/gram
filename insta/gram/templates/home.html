@@ -72,6 +72,38 @@
    position:relative;
  }
  </style>
+
+ <a href="{%url 'new-post'%}">Create Article</a>
+ <button type="button" class="btn btn-info btn-lg" data-toggle="modal" style="margin-top:20px;" href= "{%url 'new-post'%}" datstyle="margin-top:20px;"a-target="#myModal">Open Modal</button>
+
+
+ <div class="modal fade" id="myModal" role="dialog">
+ <div class="modal-dialog">
+
+ <div class="modal-content">
+ <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+    <h4 class="modal-title">Modal Header</h4>
+ </div>
+ <div class="modal-body">
+    <form  action="{%url 'new-post'%}" method="post" enctype="multipart/form-data">
+      {%csrf_token%}
+
+      {% bootstrap_form form%}
+      <input type="submit" class="btn btn-success btn-lg" value="Post">
+    </form>
+
+ </div>
+ <div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+ </div>
+ </div>
+
+ </div>
+ </div>
+
+
+ </div>
  {% if user.is_authenticated %}
 
 
@@ -79,16 +111,16 @@
    <div class="container img-container">
        <div id="upload-div"></div>
        <div class="img-div">
-           <div class="header"><img class="img-circle" src="assets/img/profileicon.jpg">
-               <label> {{post}}</label>
+           <div class="header"><img class="img-circle" src="{{Profile.profile_photo}}">
+               <label> {{post.user}}</label>
 </div>
                <img src="{{post.image.url}}">
-               {{post.name}}
 
                 <div class="header"><a href="#"><i class="fa fa-heart-o"></i></a><a href="#"><i class="fa fa-comment-o"></i></a></div>
            <div class="more-section">
-               <label>10 Likes</label>
-               <p><strong>/francismcnamee </strong>               {{post.caption}}</p>
+             <label>10 Likes</label>
+
+             {{post.caption | safe}}
            </div>
        </div>
     </div>
