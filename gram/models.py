@@ -14,26 +14,19 @@ class Editor(models.Model):
 
 
 
-class Post(models.Model):
-    image = models.ImageField(upload_to = 'photos/', null = True)
-    name = models.CharField(max_length=60, null=True)
-    caption = HTMLField(null=True)
-    likes = models.IntegerField(null =True)
-    date_uploaded = models.DateTimeField(auto_now_add=True, null=True)
-    user = models.ForeignKey(User)
+class Comment(models.Model):
+    post = models.ForeignKey('gram.Post', related_name='comments')
+    author = models.CharField(max_length=200)
+    text = models.TextField()
     pub_date = models.DateTimeField(auto_now_add=True, null=True)
+    approved_comment = models.BooleanField(default=False)
 
-
-
-
-class Comments(models.Model):
-    name = models.CharField(max_length =30)
-    author = models.CharField(max_length =30)
-    pub_date = models.DateTimeField(auto_now_add=True)
-
+    def approve(self):
+        self.approved_comment = True
+        self.save()
 
     def __str__(self):
-        return self.name
+        return self.text
 
 class Profile(models.Model):
     profile_photo = models.ImageField(upload_to = 'profiles/', null=True)
@@ -49,3 +42,16 @@ class Profile(models.Model):
 
     def save_profile(self):
         self.save
+
+
+
+
+class Post(models.Model):
+    image = models.ImageField(upload_to = 'photos/', null = True)
+    name = models.CharField(max_length=60, null=True)
+    caption = HTMLField(null=True)
+    likes = models.IntegerField(null =True)
+    date_uploaded = models.DateTimeField(auto_now_add=True, null=True)
+    user = models.ForeignKey(User)
+    pub_date = models.DateTimeField(auto_now_add=True, null=True)
+    profile = models.ForeignKey(Profile, null=True)
