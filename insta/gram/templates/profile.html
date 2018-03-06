@@ -2,8 +2,8 @@
 <style>
 .ig_cont {
 	margin: 0 auto;
-	width: 400px;
-	height: 542px;
+	width: 600px;
+	height: 842px;
 	background: #f8f8f8;
 	border-radius: 10px;
 	border: 1px solid #E5E5E5;
@@ -18,6 +18,7 @@
 	height: 40px;
 	background: #fff;
 	border-bottom: 1px solid #e5e5e5;
+	margin-right: 500px;
 }
 
 .i1, .i2, .user {
@@ -26,11 +27,11 @@
 }
 
 .i1 {
-	left: 5px;
+	left: 20px;
 }
 
 .i2 {
-	right: 5px;
+	right: 1px;
 }
 
 .user {
@@ -45,6 +46,7 @@
 	background: #FAFAFA;
 	border-top: 1px solid #e5e5e5;
 	border-bottom: 1px solid #e5e5e5;
+	le
 }
 
 .ig_abg {
@@ -60,6 +62,7 @@
 .ig_av {
 	width: 125px;
 	height: 125px;
+	background-image: url({{profile.profile_photo.url}});
 	background-size: 125px 125px;
 	border-radius: 50%;
 	border: 4px solid #e5e5e5;
@@ -158,16 +161,15 @@
     <i class="material-icons i1">arrow_back</i>
 		<span class="user">
 
-{{post.user}}
+{{profile.user}}
 		</span>
 		<i class="material-icons i2">more_vert</i>
 	</div>
 	<div class="ig_profile">
 
 		<div class="ig_abg">
-			<div class="ig_av">{{Profile.profile_photo}}</div>
+			<div class="ig_av"></div>
 		</div>
-
 		<div class="ig_info">
 			<div class="flex-container">
 				<div class="flex-item">
@@ -203,11 +205,16 @@
 		<i class="material-icons flex-item">apps</i>
 		<i class="material-icons flex-item">list</i>
 		<i class="material-icons flex-item">perm_contact_calendar</i><p>
-{% for post in posts %}
-		<img class="flex-item" src="{{post.image.url}}">
 
+
+	<div class="flex-item">
+		{% for post in images %}
+
+		<img src="{{post.image.url}}">
+</div>
 	</div>
-	{% endfor%}
 
 </div>
+{% endfor%}
+
 {% endblock %}

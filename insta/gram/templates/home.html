@@ -73,10 +73,7 @@
  }
  </style>
 
- <a href="{%url 'new-post'%}">Create Article</a>
- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" style="margin-top:20px;" href= "{%url 'new-post'%}" datstyle="margin-top:20px;"a-target="#myModal">Open Modal</button>
-
-
+ 
  <div class="modal fade" id="myModal" role="dialog">
  <div class="modal-dialog">
 
@@ -107,7 +104,7 @@
  {% if user.is_authenticated %}
 
 
-   {% for post in posts%}
+   {% for post in posts %}
    <div class="container img-container">
        <div id="upload-div"></div>
        <div class="img-div">
