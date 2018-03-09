@@ -21,12 +21,14 @@
  }
 
  .img-div img {
-   width:100%;
+   width:800px;
+   height: 600px;
  }
 
  .img-div {
    margin-bottom:40px;
    border:1px solid #e8e6e6;
+   width: 800px;
  }
 
  .img-div .header {
@@ -62,8 +64,10 @@
    margin-top:10px;
    width:600px;
    position:relative;
-   padding-left:0px;
-   padding-right:0px;
+   padding-left:0.20px;
+   padding-right:10px;
+   margin-left: 400px;
+
  }
 
  .more-section {
@@ -71,6 +75,7 @@
    min-height:50px;
    position:relative;
  }
+
  </style>
 
 
@@ -100,6 +105,7 @@
  </div>
 
 
+
  </div>
  {% if user.is_authenticated %}
 
@@ -108,16 +114,31 @@
    <div class="container img-container">
        <div id="upload-div"></div>
        <div class="img-div">
-           <div class="header"><img class="img-circle" src="{{post.profile_photo.url}}">
+           <div class="header"><img class="img-circle" src="{{profile.profile_photo.url}}">
                <label> {{post.user}}</label>
 </div>
                <img src="{{post.image.url}}">
 
-                <div class="header"><a href="#"><i class="fa fa-heart-o"></i></a><a href="#"><i class="fa fa-comment-o"></i></a></div>
+                <div class="header"><a href="#"><i class="fa fa-heart-o"></i></a><a  href="{% url 'add_comment_to_post' pk=post.pk %}" <i class="fa fa-comment-o"></i></a></div>
+
            <div class="more-section">
              <label>10 Likes</label>
+            <label> {{ post.comments.count }} comments</label>
                    {{post.profile_photo.url}}
              {{post.caption | safe}}
+             <hr>
+
+
+{% for comment in post.comments.all %}
+    <div class="comment">
+        <strong>{{ comment.author }}</strong>
+        <p>{{ comment.text|linebreaks }}</p>
+        <div class="date">{{ comment.pub_date }}</div>
+<hr>
+    </div>
+{% empty %}
+    <p>No comments here yet :(</p>
+{% endfor %}
            </div>
        </div>
     </div>

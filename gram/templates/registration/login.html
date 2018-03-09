@@ -4,7 +4,7 @@
 <style>
 .main{
   height: 1000px;
-  background: linear-gradient(silver, grey, silver);
+  background: linear-gradient(#1e1b1c, #828793, pink);
   justify-content: center;
 }
 .main .panel{
@@ -17,6 +17,30 @@
   font-size: 45px;
 }
 
+#photos{
+				position: relative;
+				margin: 0 auto;
+				text-align: center;
+				width: 100%;
+				bottom: 0%;
+				top: 35%;
+				left: 20%;
+				float: left;
+				display: inline-block;
+			}
+
+#get_app{
+    position: relative;
+    margin: 0 auto;
+    text-align: center;
+  	width: 100px;
+  	top: 34%;
+  	padding
+  	}
+
+
+
+
 </style>
 <body>
 <div class="main">
@@ -25,14 +49,13 @@
     <!-- Empty div -->
     <div class="col-md-4"></div>
     <div class="col-md-4">
-      <h1>instagram</h1>
       {% if form.errors %}
         <p> Password or Username is incorrect </p>
       {% endif %}
       <div class="panel panel-default">
 
         <div class="panel-heading">
-          <h3 class="text-center">Sign In</h3>
+          <h3 class="text-center">Instagram</h3>
         </div>
         <div class="panel-body">
 
@@ -44,7 +67,6 @@
               <input type="submit" class="btn btn-primary btn-sm" value="Login">
             </div>++
               <input type="hidden" name="next" value="{{next}}">
-            <p>Dont have an account <a href="{% url 'registration_register' %}">Register!</a></p>
 
 
 
@@ -53,10 +75,25 @@
         </div>
 
       </div>
+<hr>
+<p>Dont have an account <a href="{% url 'registration_register' %}">Register!</a></p>
+<hr>
+<div id="get_app">
+		<p>Get the app.</p>
+		</div>
+    <div id="photos">
+      <div class="col-md-4">
 
+      			<a href="https://itunes.apple.com/app/instagram/id389801252?mt=8" target="_blank"><img src="http://gtpie.com/wp-content/uploads/2015/07/appStoreIcon.png" width="127" height="40"></a>
+          </div>
+          <br>
+          <div class="col-md-4">
+
+      			<a href="https://play.google.com/store/apps/details?id=com.instagram.android&referrer=utm_source%3Dinstagramweb%26utm_campaign%3DloginPage%26utm_medium%3Dbadge" target="_blank"><img src="http://www.codecu.org/Images/2016_05_googlePlay.png" width="127" height="40"></a>
+      	</div>
     </div>
     <!-- empty div -->
-    <div class="col-md-4"></div>
+    </div>
   </div>
 </div>
 </div>

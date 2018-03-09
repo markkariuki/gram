@@ -1,0 +1,25 @@
+{% load bootstrap3 %}
+{% load static %}
+
+
+
+{% block content %}
+
+{% block styles %} {% bootstrap_css %}
+  <link rel="stylesheet" href="{% static 'css/newcomment.css' %}">
+ {% endblock %}
+
+    <div class="container">
+      <h1>
+        <span></span><br>
+        upload a comment
+      </h1>
+      <section>
+        <form method="POST" class="post-form">{% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="save btn btn-default">Send</button>
+        </form>
+
+      </section>
+  </div>
+{% endblock %}

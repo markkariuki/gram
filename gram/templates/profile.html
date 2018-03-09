@@ -153,8 +153,6 @@
 
 </style>
 
-<link href="//fonts.googleapis.com/icon?family=Material+Icons|Noto+Sans"
-      rel="stylesheet">
 
 <div class="ig_cont">
 	<div class="ig_head">
@@ -195,7 +193,7 @@
 				<br><span class="ig_di">Adjective. Adjective. Description.</span>
 				<br><span class="ig_lo">City, State, Country</span>
 				<br><div class="ig_lo">{{profile.user_bio}}</span></div>
-
+<i class="fas fa-cog"></i>
 			</div>
 		</div>
 	</div>
@@ -205,16 +203,16 @@
 		<i class="material-icons flex-item">apps</i>
 		<i class="material-icons flex-item">list</i>
 		<i class="material-icons flex-item">perm_contact_calendar</i><p>
-
-
+   <br>
+			{% for post in images %}
 	<div class="flex-item">
-		{% for post in images %}
 
 		<img src="{{post.image.url}}">
 </div>
 	</div>
 
 </div>
+
 {% endfor%}
 
 {% endblock %}

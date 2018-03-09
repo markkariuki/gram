@@ -33,6 +33,7 @@ class Profile(models.Model):
     user_bio = models.TextField()
     user = models.ForeignKey(User)
     last_update = models.DateTimeField(auto_now_add=True, null=True)
+    username = models.CharField(max_length=50,null=False, blank=False)
 
     class Meta:
         ordering =['-last_update']
@@ -43,6 +44,11 @@ class Profile(models.Model):
     def save_profile(self):
         self.save
 
+
+    @classmethod
+    def search_by_username(cls,search_term):
+        username = cls.objects.filter(username__icontains=search_term)
+        return username
 
 
 
