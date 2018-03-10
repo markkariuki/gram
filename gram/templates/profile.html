@@ -1,54 +1,143 @@
-{% extends 'base.html'%}{% block content %}
+{% block content %} {% load friendshiptags %}
+
 <style>
-.ig_cont {
-	margin: 0 auto;
-	width: 600px;
-	height: 842px;
-	background: #f8f8f8;
-	border-radius: 10px;
-	border: 1px solid #E5E5E5;
-	overflow: hidden;
+
+body {
+  margin: 100px;
+  color: #435757;
+  background:
+    linear-gradient(40deg, transparent 40%, #9ab593),
+    linear-gradient(-40deg, #ba7461 20%, #593e4e 90%);
+  font: 1.2em/1 'Noto Sans', sans-serif;
+  background-repeat: no-repeat;
+}
+
+.section-header  {
+  text-align: center;
+	margin-left: 100px;
+  margin: 0 auto;
+  padding-top: 70px;
+  margin-bottom: 30px;
+  font: 300 60px 'Lato', sans-serif;
+  letter-spacing: 3px;
+  color: #222;
+}
+
+.section-header-underline {
+  border: 1px solid #222;
+  width: 15rem;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+.video-gallery {
 	position: relative;
-	font: 16px Noto Sans;
+	margin: 0 auto;
+	padding: 1em 0 4em;
+	max-width: 1000px;
+	list-style: none;
+	text-align: center;
+  font-family: 'Raleway', sans-serif;
 }
 
-.ig_head {
+.video-gallery figure {
+	position: relative;
+	float: left;
+	overflow: hidden;
+	margin: 10px 1%;
+	min-width: 320px;
+	max-width: 480px;
+	max-height: 360px;
+	width: 48%;
+	background: #000;
+	text-align: center;
+	cursor: pointer;
+}
+
+.video-gallery figure img {
+	position: relative;
+	display: block;
+	min-height: 100%;
+	max-width: 100%;
+	opacity: 0.8;
+	border-radius: 300px;
+}
+
+.video-gallery figure figcaption {
+	padding: 2em;
+	color: #fff;
+	text-transform: uppercase;
+	font-size: 1.25em;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+}
+
+.video-gallery figure figcaption::before,
+.video-gallery figure figcaption::after {
+	pointer-events: none;
+}
+
+.video-gallery figure figcaption,
+.video-gallery figure figcaption > a {
 	position: absolute;
+	top: 0;
+	left: 0;
 	width: 100%;
-	height: 40px;
-	background: #fff;
-	border-bottom: 1px solid #e5e5e5;
-	margin-right: 500px;
+	height: 100%;
 }
 
-.i1, .i2, .user {
-	position: absolute;
-	top: 8px;
+/* Anchor will cover the whole item by default */
+.video-gallery figure figcaption > a {
+	z-index: 1000;
+	text-indent: 200%;
+	white-space: nowrap;
+	font-size: 0;
+	opacity: 0;
 }
 
-.i1 {
-	left: 20px;
+.video-gallery figure h2 {
+	word-spacing: -0.15em;
+	font-weight: 300;
+	color:
+		linear-gradient(40deg, transparent 40%, #9ab593),
+		linear-gradient(-40deg, #ba7461 20%, #593e4e 90%);
+	}
+
+.video-gallery figure h2 span {
+	font-weight: 800;
 }
 
-.i2 {
-	right: 1px;
+.video-gallery figure h2,
+.video-gallery figure p {
+	margin: 0;
 }
 
-.user {
-	left: 65px;
+.video-gallery figure p {
+	letter-spacing: 1px;
+	font-size: 68.5%;
 }
-
-.ig_profile {
-	position: absolute;
-	top: 41px;
-	height: 175px;
-	width: 100%;
-	background: #FAFAFA;
-	border-top: 1px solid #e5e5e5;
-	border-bottom: 1px solid #e5e5e5;
-	le
+	.custom-btn {
+  padding: 2px 15px;
+	size:2px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  background: transparent;
+  outline: none !important;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+	font-size: 25px;
 }
+/**** BTN No. 1 ****/
+.btn-1 {border: 2px solid #000; size:2px;}
+.btn-1:hover {
+  background: #000;
+  color: #fff;
+}
+.btn-1:active {top: 2px;}
 
+}
 .ig_abg {
 	width: 133px;
 	height: 133px;
@@ -60,159 +149,52 @@
 }
 
 .ig_av {
-	width: 125px;
-	height: 125px;
+	width: 200px;
+	height: 200px;
 	background-image: url({{profile.profile_photo.url}});
+	background-repeat: no-repeat;
+	background-position: center;
 	background-size: 125px 125px;
 	border-radius: 50%;
 	border: 4px solid #e5e5e5;
+	margin-left: 652px;
+
 }
 
-.ig_info {
-	position: absolute;
-	right: 5px;
-	top: 5px;
-	width: 230px;
-	height: calc(100% - 10px);
-	font: bold 20px Noto Sans;
-	line-height: 90%;
-}
 
-.flex-container {
-	width: 100%;
-	margin-top: 4px;
-	text-align: center;
-	display: -webkit-flex;
-	display: flex;
-	-webkit-flex-flow: row nowrap;
-	flex-flow: row nowrap;
-	-webkit-justify-content: center;
-	justify-content: center;
-}
-
-.flex-item {
-	-webkit-flex: 1 0 auto;
-	flex: 1 0 auto;
-}
-
-.ig_lt {
-	color: #b1b1b1;
-	font-size: 16px;
-}
-
-.ig_desc {
-	font: 14px Noto Sans;
-	letter-spacing: 0.5px;
-	height: 110px;
-	margin: 10px 5px 5px 5px;
-	width: calc(100% - 10px);
-	overflow: hidden;
-}
-
-.ig_sub {
-	color: #b1b1b1;
-}
-
-.ig_di, .ig_lo {
-	font-size: 13px;
-}
-
-.ig_lo {
-	color: #3C6EB2;
-}
-
-.ig_posts {
-	width: 100%;
-	height: 320px;
-	position: absolute;
-	top: 218px;
-	border-top: 1px solid #e5e5e5;
-	text-align: center;
-	display: -webkit-flex;
-	display: flex;
-	-webkit-flex-flow: row wrap;
-	flex-flow: row wrap;
-	-webkit-justify-content: center;
-	justify-content: center;
-	overflow: hidden;
-}
-
-.ig_posts i {
-	font-size: 32px;
-	padding-top: 10px;
-}
-
-.ig_posts i:first-of-type {
-	color: #415d81;
-}
-
-.ig_posts img {
-	width: 125px;
-	height: 125px;
-}
 
 </style>
 
+<div class="content">
 
-<div class="ig_cont">
-	<div class="ig_head">
-    <i class="material-icons i1">arrow_back</i>
-		<span class="user">
 
-{{profile.user}}
-		</span>
-		<i class="material-icons i2">more_vert</i>
-	</div>
-	<div class="ig_profile">
 
-		<div class="ig_abg">
-			<div class="ig_av"></div>
-		</div>
-		<div class="ig_info">
-			<div class="flex-container">
-				<div class="flex-item">
-					4703
-					<br><span class="ig_lt">posts</span>
-				</div>
+			<div class="ig_abg">
+				<div class="ig_av"></div>
+			</div>
+      <figcaption>
+        <div>
+          <p>
+</p>
+        </div>
 
-				<div class="flex-item">
-					46.6k
-					<br><span class="ig_lt">followers</span>
-				</div>
+			<h1 class="section-header">
+			user:	{{profile.user}}<br>
 
-				<div class="flex-item">
-					1959
-					<br><span class="ig_lt">following</span>
-				</div>
-
+			<div class="section-header-underline">
 			</div>
 
-			<div class="ig_desc">
-				<b>Real Name</b>
-				<br><span class="ig_sub">Occupation</span>
-				<br><span class="ig_di">Adjective. Adjective. Description.</span>
-				<br><span class="ig_lo">City, State, Country</span>
-				<br><div class="ig_lo">{{profile.user_bio}}</span></div>
-<i class="fas fa-cog"></i>
-			</div>
-		</div>
-	</div>
 
-	<div class="ig_posts">
+				    <a href="{%url 'photosToday'%}" style="color:white;" class="custom-btn btn-1">follow</a>
 
-		<i class="material-icons flex-item">apps</i>
-		<i class="material-icons flex-item">list</i>
-		<i class="material-icons flex-item">perm_contact_calendar</i><p>
-   <br>
-			{% for post in images %}
-	<div class="flex-item">
 
-		<img src="{{post.image.url}}">
-</div>
-	</div>
+		</h1>
+
+
+
+
+
 
 </div>
-
-{% endfor%}
 
 {% endblock %}

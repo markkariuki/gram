@@ -1,1 +1,1 @@
-web: gunicorn heyapp.wsgi
+web: gunicorn insta.wsgi
